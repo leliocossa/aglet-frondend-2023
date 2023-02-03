@@ -1,5 +1,5 @@
 # Aglet Frontend Challenge 2023
-![Design preview for the Aglet clone cases website](assets/images/website-thumb.png)
+![Design preview for the Aglet clone cases website](assets/images/website-thumb.PNG)
 
 ## Welcome! 👋
 
