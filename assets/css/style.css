@@ -144,7 +144,7 @@ section .container .slideshow__item video {
   width: 560px;
 }
 section .container .slideshow__item video.filter {
-  filter: brightness(40%);
+  filter: brightness(10%);
   transition: 1s filter linear;
 }
 section .container .slideshow__item .content {
@@ -429,5 +429,10 @@ section .container.contact__item .bottom-right .share .icons li {
   }
   .slideshow__nav {
     display: none;
+  }
+}
+@media (min-width: 1600px) {
+  section .container .slideshow__item::before {
+    padding-bottom: 50%;
   }
 }/*# sourceMappingURL=style.css.map */

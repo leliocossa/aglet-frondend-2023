@@ -3,15 +3,23 @@ const track = document.querySelector("#container");
 let mouseDown = false;
 let startX, scrollLeft;
 
-let startDragging = function (e) {
+const startScrooling = (event) =>{
+  track.scrollBy({
+    left: event.deltaY < 0 ? -70 : 70,
+  });
+
+  //Call Tracker
+  horizontalScroll(track.scrollLeft);
+}
+const startDragging = (e) => {
   mouseDown = true;
   startX = e.pageX - track.offsetLeft;
   scrollLeft = track.scrollLeft;
 
   //Call Tracker
-  horizontalScroll(track.scrollLeft);
+  horizontalScroll(scrollLeft);
 };
-let stopDragging = function (event) {
+const stopDragging = (event) => {
   mouseDown = false;
 };
 
@@ -32,21 +40,19 @@ track.addEventListener("mousemove", (e) => {
 track.addEventListener("mousedown", startDragging, false);
 track.addEventListener("mouseup", stopDragging, false);
 track.addEventListener("mouseleave", stopDragging, false);
-track.addEventListener("wheel", (event) => {
-  event.preventDefault();
-
-  track.scrollBy({
-    left: event.deltaY < 0 ? -70 : 70,
-  });
-
-  //Call Tracker
-  horizontalScroll(track.scrollLeft);
-});
+track.addEventListener("wheel", startScrooling, false);
 
 //Horizontal scroll tracking
 const horizontalScroll = (scrollLeft) => {
+  let percentage;
   const height = document.documentElement.scrollHeight;
-  const scrolled = (scrollLeft / height) * 46;
+
+  if(screen.width > 1600)
+    percentage = 66;
+  else
+    percentage = 46;
+
+  const scrolled = (scrollLeft / height) * percentage;
   document.getElementById("myBar").style.transform =
     "translate3d( " + scrolled + "px, 0px, 0px)";
 };
